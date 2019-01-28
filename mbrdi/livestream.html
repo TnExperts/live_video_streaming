@@ -1,0 +1,54 @@
+<!-- Dieses Script gibt den Livevideostream in einer HTML Seite aus. Inkl. Hinweis auf Probleme mit dem IE und Edge Browser.
+-->
+
+<?php
+
+$server="192.168.0.74";
+$titel="Gottesdienst der Evang. Kirchengemeinde in Bondorf - Livestream";
+$ort="bondorf";
+$streamname="live";
+
+?>
+
+<!DOCTYPE html>
+<head>
+  <title><?php echo $titel ?></title>
+  <link rel="stylesheet" href="../flowplayer/tt/minimalist.css">
+  <script src="../flowplayer/tt/jquery-1.11.2.min.js"></script>
+  <script src="../flowplayer/tt/flowplayer.min.js"></script>
+  <!-- Flowplayer hlsjs engine -->
+  <script src="../flowplayer/tt/flowplayer.hlsjs.min.js"></script>
+</head>
+
+<?php
+function get_browser_name($user_agent)
+{
+    if (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')) return 'Opera';
+    elseif (strpos($user_agent, 'Edge')) return 'Edge';
+    elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+    elseif (strpos($user_agent, 'Safari')) return 'Safari';
+    elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+    elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+
+    return 'Other';
+}
+
+$browser = get_browser_name($_SERVER['HTTP_USER_AGENT']);
+
+if ($browser=="Edge") {
+ header("Location: http://".$server."/".$ort."/livestream-edge.html");
+}
+?>
+
+<?php include "counterlive.php"; ?>
+
+<body>
+<div data-live="true"
+     data-ratio="0.5625"
+     class="flowplayer fixed-controls">
+   <video autoplay data-title="Autoplay">
+   <video data-title="<?php echo $titel ?>">
+   <source type="application/x-mpegurl" src="http://<?php echo $server ?>/<?php echo $streamname ?>/test/index.m3u8">
+   </video>
+</div>
+</body>
