@@ -4,23 +4,23 @@
 - Linux Server with Ubuntu 16.04 or 18.04
 - sudo rights to install and compile additional tools
 
-# Create needed folders on the Ubuntu server
+## Create needed folders on the Ubuntu server
 **Folder for video recordings:**  
 sudo mkdir /videorecordings/mbrdi
 
 **Folder for php and html files:**  
 sudo mkdir /usr/local/nginx/html
 
-# Install ffmpeg
+## Install ffmpeg
 sudo apt-get install ffmpeg
 
 Create a softlink to ffmpeg in /home/rarents/bin
 Create an additional softlink to ffmpeg in /home/rarents/bin and name it avconv
 
-# Install PHP 
+## Install PHP 
 sudo apt install php7.1-fpm php7.1-mcrypt php7.1-cli php7.1-xml php7.1-mysql php7.1-gd php7.1-imagick php7.1-recode php7.1-tidy php7.1-xmlrpc
 
-# Configure PHP
+## Configure PHP
 **Add the following line to /etc/php/7.1/fpm/php-fpm.conf to execute PHP Code within HTML files:**  
 sudo nano /etc/php/7.1/fpm/php-fpm.conf 
 
@@ -29,7 +29,7 @@ security.limit_extensions = .php .html .js
 **Then restart php-fpm service:**  
 sudo service php7.1-fpm restart
 
-# Compile nginx with rtmp 
+## Compile nginx with rtmp 
 **Install the tools required to compile Nginx and Nginx-RTMP from source:**  
 sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip
 
@@ -70,7 +70,7 @@ cgi.fix_pathinfo=0
 
 sudo service php7.1-fpm restart
 
-# Configuration of nginx
+## Configuration of nginx
 **Edit the nginx configuration file:**  
 sudo nano /usr/local/nginx/conf/nginx.conf
 
@@ -173,4 +173,12 @@ rtmp {
 Sudo service nginx restart
 sudo service php7.1-fpm restart
 
-# Extract PHP and HTML pages:
+## Extract PHP and HTML pages:
+**Switch to directory /usr/local/nginx/html:**  
+cd /usr/local/nginx/html
+
+**Create directory mbrdi:**  
+sudo mkdir /usr/local/nginx/html/mbrdi
+
+
+
