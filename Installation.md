@@ -3,7 +3,7 @@
 - sudo rights to install and compile additional tools
 
 # Create needed folders on the Ubuntu server
-**Folder for video recordings:** 
+**Folder for video recordings:**  
 sudo mkdir /videorecordings/mbrdi
 
 **Folder for php and html files:**
