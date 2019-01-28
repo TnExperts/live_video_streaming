@@ -34,7 +34,13 @@ sudo apt install php7.1-fpm php7.1-mcrypt php7.1-cli php7.1-xml php7.1-mysql php
 **Add the following line to /etc/php/7.1/fpm/php-fpm.conf to execute PHP Code within HTML files:**  
 `sudo nano /etc/php/7.1/fpm/php-fpm.conf`  
 
-`security.limit_extensions = .php .html .js`  
+`security.limit_extensions = .php .html .js` 
+
+**Set cgi.fix_pathinfo to 0 in /etc/php/7.1/fpm/php.ini**  
+```
+sudo nano /etc/php/7.1/fpm/php.ini
+cgi.fix_pathinfo=0
+```
 
 **Then restart php-fpm service:**  
 `sudo service php7.1-fpm restart`  
@@ -91,15 +97,6 @@ sudo update-rc.d nginx defaults
 ```
 sudo service nginx start
 sudo service nginx stop
-```
-
-```
-sudo nano /etc/php/7.1/fpm/php.ini
-cgi.fix_pathinfo=0
-```
-
-```
-sudo service php7.1-fpm restart
 ```
 
 ## Configuration of nginx
@@ -209,15 +206,14 @@ rtmp {
 ```
 
 **Restart nginx and php:**  
-Sudo service nginx restart
+```
+sudo service nginx restart
 sudo service php7.1-fpm restart
+```
 
 ## Extract PHP and HTML pages:
 **Switch to directory /usr/local/nginx/html:**  
-cd /usr/local/nginx/html
+`cd /usr/local/nginx/html`
 
 **Create directory mbrdi:**  
-sudo mkdir /usr/local/nginx/html/mbrdi
-
-
-
+`sudo mkdir /usr/local/nginx/html/mbrdi`
