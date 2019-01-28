@@ -8,12 +8,12 @@
 ## Create needed folders on the Ubuntu server
 **Create folder for video recordings:**  
 ```
-sudo mkdir /videorecordings/mbrdi
+sudo mkdir /video_recordings/mbrdi
 ```
 
 **Make user www-data and group www-data owner of the folder:**  
 ```
-sudo chown www-data:www-data /videorecordings/mbrdi
+sudo chown www-data:www-data /video_recordings/mbrdi
 ```
 
 **Create folder for php and html files:**  
@@ -128,7 +128,7 @@ rtmp {
   listen 1935;
   allow play all;
 
-  # Start of configuration to add
+  # ----- Start of configuration to add -----
   # Live Videostream Configuration for the location "mbrdi"
   application mbrdi {
    allow play all;
@@ -143,12 +143,12 @@ rtmp {
    hls_path /HLS/mbrdi;
    hls_fragment 10s;
    exec_options on;
-   #Nach Fertigstellung flv-Aufzeichnung umwandeln in mp4 das auf Homepage unter dem Link Letzte Aufzeichnung erreichbar ist. Die ersten 120 Sekunden werden weggeschnitten.
-   exec_record_done /usr/bin/ffmpeg -y -i $path  -ss 200 -c copy -copyts - $dirname/aufzeichnung.mp4;
-  #Nach Fertigstellung flv-Aufzeichnung umwandeln in mp4 das auf Homepage unter dem entsprechenden Datums-Link erreichbar ist. Die ersten 120 Sekunden werden weggeschnitten.
+   #After finishing the flv-recording convert the video to mp4 format and remove the first 200 seconds.
+   exec_record_done /usr/bin/ffmpeg -y -i $path  -ss 200 -c copy -copyts - $dirname/aufzeichnung.mp4;
+  #After finishing the flv-recording convert the video to mp4 format, which is available on the homepage as recorded video link. Remove the first 200 seconds.
    exec_record_done /usr/bin/ffmpeg -y -i $path  -ss 200 -c copy -copyts -y $dirname/$basename.mp4;
 }
-# End of configuration to add
+# ----- End of configuration to add -----
 ```
 
 **In the Server section add the following configuration:**  
@@ -168,7 +168,7 @@ rtmp {
         }
 
 
-        # Start of configuration to add
+        # ------- Start of configuration to add ------- 
         # ----------- Start mbrdi--------------
         location /mbrdistreams {
             alias /video_recordings/mbrdi;
@@ -195,7 +195,7 @@ rtmp {
         location /mbrdirecordings {
         alias /video_recordings/mbrdi;
         }
-# End of configuration to add
+# ------- End of configuration to add ------- 
 ```
 
 **Add the following PHP configuration:**  
@@ -227,3 +227,8 @@ sudo service php7.1-fpm restart
 
 **Create directory mbrdi:**  
 `sudo mkdir /usr/local/nginx/html/mbrdi`
+
+# Streaming Client installation  
+In this example, the streaming client ist a linub box (eg Intel NUC), with Ubuntu OS 16.04 or 18.04, 
+but it can also be a Windows-  or Raspberry Pi client, as well as a smartphone app.  
+
