@@ -32,15 +32,12 @@ sudo apt install php7.1-fpm php7.1-mcrypt php7.1-cli php7.1-xml php7.1-mysql php
 
 ## Configure PHP
 **Add the following line to /etc/php/7.1/fpm/php-fpm.conf to execute PHP Code within HTML files:**  
-```
-sudo nano /etc/php/7.1/fpm/php-fpm.conf 
+`sudo nano /etc/php/7.1/fpm/php-fpm.conf`  
 
-```
-security.limit_extensions = .php .html .js
+`security.limit_extensions = .php .html .js`  
 
 **Then restart php-fpm service:**  
-```
-sudo service php7.1-fpm restart
+`sudo service php7.1-fpm restart`  
 
 ## Compile nginx with rtmp 
 **Install the tools required to compile Nginx and Nginx-RTMP from source:**  
