@@ -1,1 +1,52 @@
+<!-- Dieses Script gibt bestimmte Filme wieder. Dabei wird von index.php als Parameter der angeklickte mp4 Film wiedergegeben. 
+Das Script wird aus der index.php aufgerufen. 
+-->
 
+
+<?php
+
+$server="192.168.0.74";
+$titel="MBRDI Video Streaming - Video Recording";
+$ort="bondorf";
+
+?>
+
+<!doctype html>
+<head>
+  <title><?php echo $titel ?></title>
+  <link rel="stylesheet" href="../flowplayer/6.0.5/skin/minimalist.css">
+  <script src="../flowplayer/tt/jquery-1.11.2.min.js"></script>
+  <script src="../flowplayer/tt/flowplayer.min.js"></script>
+  <!-- Flowplayer hlsjs engine -->
+  <script src="../flowplayer/tt/flowplayer.hlsjs.min.js"></script>
+</head>
+
+<?php
+function get_browser_name($user_agent)
+{
+    if (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')) return 'Opera';
+    elseif (strpos($user_agent, 'Edge')) return 'Edge';
+    elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+    elseif (strpos($user_agent, 'Safari')) return 'Safari';
+    elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+    elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+
+    return 'Other';
+}
+
+$browser = get_browser_name($_SERVER['HTTP_USER_AGENT']);
+
+if ($browser=="Edge") {
+ header("Location: http://".$server."/".$ort."/aufzeichnung-edge.html");
+}
+?>
+
+<body>
+  <div class="flowplayer">
+    <video autoplay data-title="Autoplay">
+    <video>
+      <source type="video/mp4"
+              src="http:///<?php echo $server."/".$ort?>streams/<?php echo $_GET["filename"]; ?>">
+      </video>
+  </div>
+</body>
