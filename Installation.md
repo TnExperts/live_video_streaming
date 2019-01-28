@@ -11,9 +11,19 @@
 sudo mkdir /videorecordings/mbrdi
 ```
 
+**Make user www-data and group www-data owner of the folder:**  
+```
+sudo chown www-data:www-data /videorecordings/mbrdi
+```
+
 **Create folder for php and html files:**  
 ```
 sudo mkdir /usr/local/nginx/html
+```
+
+**Make user www-data and group www-data owner of the folder:**  
+```
+sudo chown www-data:www-data /usr/local/nginx/html
 ```
 
 ## Install ffmpeg
