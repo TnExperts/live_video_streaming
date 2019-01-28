@@ -31,7 +31,7 @@ sudo service php7.1-fpm restart
 **Install the tools required to compile Nginx and Nginx-RTMP from source:**  
 sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip
 
-**Create a working directory and switch to it: **  
+**Create a working directory and switch to it:**  
 mkdir ~/working
 cd ~/working
 
