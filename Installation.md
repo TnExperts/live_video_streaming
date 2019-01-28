@@ -72,7 +72,7 @@ sudo service php7.1-fpm restart
 **Edit the nginx configuration file:**  
 sudo nano /usr/local/nginx/conf/nginx.conf
 
-**In the RTMP section add the yellow marked configurations:**  
+**In the RTMP section add the marked configurations:**  
 
 ```
 rtmp {
@@ -80,6 +80,7 @@ rtmp {
   listen 1935;
   allow play all;
 
+  # Start of configuration to add
   # Live Videostream Configuration for the location "mbrdi"
   application mbrdi {
    allow play all;
@@ -99,10 +100,12 @@ rtmp {
   #Nach Fertigstellung flv-Aufzeichnung umwandeln in mp4 das auf Homepage unter dem entsprechenden Datums-Link erreichbar ist. Die ersten 120 Sekunden werden weggeschnitten.
    exec_record_done /usr/bin/ffmpeg -y -i $path  -ss 200 -c copy -copyts -y $dirname/$basename.mp4;
 }
+# End of configuration to add
 ```
 
 **In the Server section add the following configuration:**  
 
+```
     server {
         listen       80;
         server_name  localhost;
@@ -116,6 +119,8 @@ rtmp {
             index  index.html index.htm index.php;
         }
 
+
+        # Start of configuration to add
         # ----------- Start mbrdi--------------
         location /mbrdistreams {
             alias /video_recordings/mbrdi;
@@ -142,9 +147,13 @@ rtmp {
         location /mbrdirecordings {
         alias /video_recordings/mbrdi;
         }
+# End of configuration to add
+```
 
 **Add the following PHP configuration:**  
 
+```
+# Start of configuration to add
        ## Begin - PHP Konfiguration
        location ~ \.(php|html|htm)$ {
         root html;
@@ -155,6 +164,8 @@ rtmp {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
       }
+# End of configuration to add
+```
 
 **Restart nginx and php:**  
 Sudo service nginx restart
