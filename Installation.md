@@ -74,6 +74,7 @@ sudo nano /usr/local/nginx/conf/nginx.conf
 
 **In the RTMP section add the yellow marked configurations:**  
 
+```
 rtmp {
  server {
   listen 1935;
@@ -98,6 +99,7 @@ rtmp {
   #Nach Fertigstellung flv-Aufzeichnung umwandeln in mp4 das auf Homepage unter dem entsprechenden Datums-Link erreichbar ist. Die ersten 120 Sekunden werden weggeschnitten.
    exec_record_done /usr/bin/ffmpeg -y -i $path  -ss 200 -c copy -copyts -y $dirname/$basename.mp4;
 }
+```
 
 **In the Server section add the following configuration:**  
 
