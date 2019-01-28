@@ -201,7 +201,7 @@ rtmp {
 **Add the following PHP configuration:**  
 
 ```
-# Start of configuration to add
+# ----- Start of configuration to add -----
        ## Begin - PHP Konfiguration
        location ~ \.(php|html|htm)$ {
         root html;
@@ -212,7 +212,7 @@ rtmp {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
       }
-# End of configuration to add
+# ----- End of configuration to add -----
 ```
 
 **Restart nginx and php:**  
