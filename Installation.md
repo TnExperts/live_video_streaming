@@ -28,7 +28,7 @@ security.limit_extensions = .php .html .js
 sudo service php7.1-fpm restart
 
 # Compile nginx with rtmp
-Install the tools required to compile Nginx and Nginx-RTMP from source:
+** Install the tools required to compile Nginx and Nginx-RTMP from source: **  
 sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip
 
 **Create a working directory and switch to it: **  
