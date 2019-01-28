@@ -74,6 +74,11 @@ sudo service php7.1-fpm restart
 **Edit the nginx configuration file:**  
 sudo nano /usr/local/nginx/conf/nginx.conf
 
+**Ensure that nginx is running under user www-data by adding/replacing the first line of the configuration file:** 
+```
+user  www-data;
+```
+
 **In the RTMP section add the marked configurations:**  
 
 ```
