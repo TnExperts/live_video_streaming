@@ -27,8 +27,8 @@ security.limit_extensions = .php .html .js
 **Then restart php-fpm service:**  
 sudo service php7.1-fpm restart
 
-# Compile nginx with rtmp
-** Install the tools required to compile Nginx and Nginx-RTMP from source: **  
+# Compile nginx with rtmp 
+**Install the tools required to compile Nginx and Nginx-RTMP from source:**  
 sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip
 
 **Create a working directory and switch to it: **  
@@ -39,7 +39,7 @@ cd ~/working
 wget http://nginx.org/download/nginx-1.9.15.tar.gz
 wget https://github.com/arut/nginx-rtmp-module/archive/master.zip
 
-**Extract the Nginx and Nginx-RTMP source: **  
+**Extract the Nginx and Nginx-RTMP source:**  
 tar -zxvf nginx-1.9.15.tar.gz
 unzip master.zip
 
