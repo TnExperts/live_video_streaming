@@ -1,10 +1,10 @@
 # Prerequisites
-Linux Server with Ubuntu 16.04 or 18.04
-sudo rights to install and compile additional tools
+-Linux Server with Ubuntu 16.04 or 18.04
+-sudo rights to install and compile additional tools
 
 # Create needed folders on the Ubuntu server
 **Folder for video recordings:**
-Sudo mkdir /videorecordings/mbrdi
+sudo mkdir /videorecordings/mbrdi
 
 ** Folder for php and html files: **
 Sudo mkdir /usr/local/nginx/html
