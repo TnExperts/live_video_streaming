@@ -2,17 +2,17 @@
 
 Voraussetzungen:
 ----------------
-/videorecordings/bondorf                => Dorthin werden die Aufzeichnungen abgespeichert
-/usr/local/nginx/html/bondorf           => Softlink von download.mp4 auf /video_recordings/bondorf/aufzeichnung.mp4
+/videorecordings/nbrdi               => Dorthin werden die Aufzeichnungen abgespeichert
+/usr/local/nginx/html/mbrdi          => Softlink von download.mp4 auf /video_recordings/bondorf/aufzeichnung.mp4
 
 -->
 
 <?php 
 
 $server="192.168.0.74";
-$titel="Gottesdienste der Evang. Kirchengemeinde in Bondorf";
-$ort="bondorf";
-$streamname="live";
+$titel="MBRDI Video Streams";
+$ort="MBRDI";
+$streamname="mbrdi";
 
 ?>
 
