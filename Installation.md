@@ -3,76 +3,113 @@
 ## Prerequisites
 - Linux Server with Ubuntu 16.04 or 18.04
 - sudo rights to install and compile additional tools
+- existing linux user and group www-data
 
 ## Create needed folders on the Ubuntu server
-**Folder for video recordings:**  
+**Create folder for video recordings:**  
+```
 sudo mkdir /videorecordings/mbrdi
+```
 
-**Folder for php and html files:**  
+**Create folder for php and html files:**  
+```
 sudo mkdir /usr/local/nginx/html
+```
 
 ## Install ffmpeg
+```
+sudo apt-get update  
 sudo apt-get install ffmpeg
+```
 
 Create a softlink to ffmpeg in /home/rarents/bin
 Create an additional softlink to ffmpeg in /home/rarents/bin and name it avconv
 
 ## Install PHP 
+```
 sudo apt install php7.1-fpm php7.1-mcrypt php7.1-cli php7.1-xml php7.1-mysql php7.1-gd php7.1-imagick php7.1-recode php7.1-tidy php7.1-xmlrpc
+```
 
 ## Configure PHP
 **Add the following line to /etc/php/7.1/fpm/php-fpm.conf to execute PHP Code within HTML files:**  
+```
 sudo nano /etc/php/7.1/fpm/php-fpm.conf 
 
+```
 security.limit_extensions = .php .html .js
 
 **Then restart php-fpm service:**  
+```
 sudo service php7.1-fpm restart
 
 ## Compile nginx with rtmp 
 **Install the tools required to compile Nginx and Nginx-RTMP from source:**  
-sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip
+```
+sudo apt-get update  
+sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev zlib1g-dev unzip  
+```
 
 **Create a working directory and switch to it:**  
-mkdir ~/working
-cd ~/working
+```
+mkdir ~/working  
+cd ~/working  
+```
 
 **Download the Nginx and Nginx-RTMP source:**  
-wget http://nginx.org/download/nginx-1.9.15.tar.gz
-wget https://github.com/arut/nginx-rtmp-module/archive/master.zip
+```
+wget http://nginx.org/download/nginx-1.9.15.tar.gz  
+wget https://github.com/arut/nginx-rtmp-module/archive/master.zip  
+```
 
 **Extract the Nginx and Nginx-RTMP source:**  
-tar -zxvf nginx-1.9.15.tar.gz
-unzip master.zip
+```
+tar -zxvf nginx-1.9.15.tar.gz  
+unzip master.zip  
+```
 
 **Switch to the Nginx directory:**  
-cd nginx-1.9.15
+```
+cd nginx-1.9.15  
+```
 
 **Add modules that Nginx will be compiled with. Nginx-RTMP is included:**  
-./configure --with-http_ssl_module --with-http_stub_status_module --add-module=../nginx-rtmp-module-master
+```
+./configure --with-http_ssl_module --with-http_stub_status_module --add-module=../nginx-rtmp-module-master  
+```
 
 **Compile and install Nginx with Nginx-RTMP:**  
+```
 make
 sudo make install
+```
 
 **Install the Nginx init scripts:**  
+```
 sudo wget https://raw.github.com/JasonGiedymin/nginx-init-ubuntu/master/nginx -O /etc/init.d/nginx
-
 sudo chmod +x /etc/init.d/nginx
 sudo update-rc.d nginx defaults
+```
 
 **Start and stop Nginx to generate configuration files:**  
+```
 sudo service nginx start
 sudo service nginx stop
+```
 
+```
 sudo nano /etc/php/7.1/fpm/php.ini
 cgi.fix_pathinfo=0
+```
 
+```
 sudo service php7.1-fpm restart
+```
 
 ## Configuration of nginx
 **Edit the nginx configuration file:**  
+```
 sudo nano /usr/local/nginx/conf/nginx.conf
+```
 
 **Ensure that nginx is running under user www-data by adding/replacing the first line of the configuration file:** 
 ```
