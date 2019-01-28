@@ -1,4 +1,6 @@
-# Prerequisites
+# Streaming Server Installation
+
+## Prerequisites
 - Linux Server with Ubuntu 16.04 or 18.04
 - sudo rights to install and compile additional tools
 
